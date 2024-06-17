@@ -1,0 +1,15 @@
+services:
+  bip-app-builder:
+    build:
+      dockerfile_inline: |
+        FROM hiberglobal/gcc-arm-none-eabi:7-2018-q2-update
+        RUN apk add bash git
+    user: "1000:1000"
+    volumes:
+      - ./:/app:Z
+    entrypoint: "/bin/bash"
+    command:
+      - -c
+      - |
+        cd /app
+        ./build.sh
